@@ -1,18 +1,32 @@
 # -*- coding: utf-8 -*-
 
+import sys
+import os
 import time
-from http.server import HTTPServer
-from server import Server
 
-HOST_NAME = 'localhost'
-PORT_NUMBER = 8000
+path2here = os.path.dirname(os.path.realpath(__file__))
+libPath = os.path.join(path2here, 'libs')
+
+sys.path.append(path2here)
+sys.path.append(libPath)
+os.chdir(path2here)
+
+import config
+from gameserver import GameServer
+print(config.GAME_COMMAND)
+
+
+def simpleHandler(input):
+    print(input)
+    print('simpleHandled')
+    return
+
 
 if __name__ == '__main__':
-    httpd = HTTPServer((HOST_NAME, PORT_NUMBER), Server)
-    print(time.asctime(), 'Server UP - %s:%s' % (HOST_NAME, PORT_NUMBER))
-    try:
-        httpd.serve_forever()
-    except KeyboardInterrupt:
-        pass
-    httpd.server_close()
-    print(time.asctime(), 'Server DOWN - %s:%s' % (HOST_NAME, PORT_NUMBER))
+    game_server = GameServer()
+    game_server.setHandler(simpleHandler)
+    game_server.start()
+
+    while game_server.isRunning():
+        time.sleep(1)
+        print(game_server.current_log)

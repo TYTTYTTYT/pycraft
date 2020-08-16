@@ -1,0 +1,9 @@
+[Minecraft Settings]
+GAME_COMMAND = python pseudoserver.py
+default = java -Xms1G -Xmx3G -d64 -jar server.jar nogui
+
+
+
+[ServerSettings]
+
+[weChatSettings]

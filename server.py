@@ -17,8 +17,8 @@ class Server(BaseHTTPRequestHandler):
         self.send_response(status)
         self.send_header('Content-type', content_type)
         self.end_headers()
-        return bytes('Hello World你好', 'UTF-8')
+        return bytes('Hello World not found', 'UTF-8')
 
     def respond(self):
-        content = self.handle_http(200, 'text/html')
+        content = self.handle_http(403, 'text/html')
         self.wfile.write(content)
