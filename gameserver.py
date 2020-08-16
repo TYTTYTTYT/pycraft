@@ -32,9 +32,10 @@ class GameServer:
             self.game.stdin.flush()
 
     def listen(self):
-        new_log = self.game.stdout.readline()
-        self.current_log = new_log
-        self.handler(new_log)
+        while self.isRunning():
+            new_log = self.game.stdout.readline()
+            self.current_log = new_log
+            self.handler(new_log)
 
     def send(self, command):
         command = command + '\n'

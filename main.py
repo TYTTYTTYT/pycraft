@@ -28,5 +28,5 @@ if __name__ == '__main__':
     game_server.start()
 
     while game_server.isRunning():
-        time.sleep(1)
-        print(game_server.current_log)
+        time.sleep(30)
+        # print(game_server.current_log)
