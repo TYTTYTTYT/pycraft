@@ -5,7 +5,7 @@ from subprocess import Popen, PIPE
 from threading import Thread
 
 
-class GameServer:
+class GameServer(object):
     def __init__(self):
         self.all_log = []
         self.current_log = ''
@@ -39,8 +39,8 @@ class GameServer:
 
     def send(self, command):
         command = command + '\n'
-        self.game.stdout.write(command.encode('utf-8'))
-        self.game.stdout.flush()
+        self.game.stdin.write(command.encode('utf-8'))
+        self.game.stdin.flush()
 
     def isRunning(self):
         if self.game.poll() is not None:

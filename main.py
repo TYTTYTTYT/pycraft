@@ -16,8 +16,9 @@ from gameserver import GameServer
 print(config.GAME_COMMAND)
 
 
-def simpleHandler(input):
-    print(input)
+def simpleHandler(msg):
+    msg = msg.decode('utf-8')
+    print(msg)
     print('simpleHandled')
     return
 
@@ -27,6 +28,10 @@ if __name__ == '__main__':
     game_server.setHandler(simpleHandler)
     game_server.start()
 
-    while game_server.isRunning():
-        time.sleep(30)
-        # print(game_server.current_log)
+    for i in range(5):
+        time.sleep(1)
+        game_server.send('hahaha')
+
+    game_server.send('/stop')
+
+    game_server.game.wait()
