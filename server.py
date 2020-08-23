@@ -9,6 +9,16 @@ class Server(BaseHTTPRequestHandler):
         return
         
     def do_GET(self):
+        if self.path != '/what':
+            print('------------------------------')
+            print(self.path)
+            print(self.command)
+            print('------------------------------')
+            print(self.client_address)
+            print('------------------------------')
+            print(self.headers)
+            print('==============================')
+            return
         self.send_response(200)
         self.send_header('wc', 'ww')
         self.end_headers()
