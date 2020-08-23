@@ -5,7 +5,7 @@ from http.server import HTTPServer
 from server import Server
 
 HOST_NAME = 'localhost'
-PORT_NUMBER = 8000
+PORT_NUMBER = 1234
 
 if __name__ == '__main__':
     httpd = HTTPServer((HOST_NAME, PORT_NUMBER), Server)
